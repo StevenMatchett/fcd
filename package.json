@@ -1,7 +1,7 @@
 {
   "name": "@matchett/fcd",
   "private": false,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Directory chooser that matches folder names without fzf so you can cd faster.",
   "bin": {
     "fcd": "bin/fcd.js"

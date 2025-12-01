@@ -20,6 +20,18 @@ pnpm install -g .
 npm install -g .
 ```
 
+## Add to your shell
+Add to your .zshrc or equivalent:
+
+### If you use pnpm
+```
+fcd() { cd "$(pnpm exec fcd "$@")" || return; }
+```
+
+### If you use npm
+```
+# after global install, you can use the binary directly:
+# fcd() { cd "$(npm exec fcd "$@")" || return; }
 
 If you prefer not to install globally, you can run it via pnpm without installing:
 
@@ -43,17 +55,7 @@ Behavior:
 
 To jump into the result, add a shell helper:
 
-Add to your .zshrc or equivalent:
 
-### If you use pnpm
-```
-fcd() { cd "$(pnpm exec fcd "$@")" || return; }
-```
-
-### If you use npm
-```
-# after global install, you can use the binary directly:
-# fcd() { cd "$(npm exec fcd "$@")" || return; }
 ```
 
 ### Options
