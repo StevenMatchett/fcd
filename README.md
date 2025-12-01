@@ -1,6 +1,6 @@
 # fcd
 
-Lightweight directory picker that matches folder names (no `fzf` needed), packaged with pnpm.
+Lightweight directory picker that matches folder names (no `fzf` needed).
 
 ## Install
 
@@ -28,15 +28,23 @@ pnpm exec fcd api ..   # example: search for "api" under ../
 Behavior:
 - Fuzzy-matches against directory names only (not the full path), case-insensitive.
 - Default search depth is 1 (only direct subdirectories); raise `FCD_MAX_DEPTH` to recurse.
-- When multiple results are found, shows the top matches and lets you pick with arrow keys or j/k (g/G to jump) + Enter (default is the top match).
+- When multiple results are found, shows the top matches and lets you pick with arrow keys or j/k (g/G to jump) + Enter (default is the top match). Esc/q cancels.
 - Prints the selected match as an absolute path.
+- Prompts are written to stderr so command substitution like `dir="$(fcd foo)"` stays interactive.
 
 To jump into the result, add a shell helper:
 
+Add to your .zshrc or equivalent:
+
+### If you use pnpm
 ```
 fcd() { cd "$(pnpm exec fcd "$@")" || return; }
+```
+
+### If you use npm
+```
 # after global install, you can use the binary directly:
-# fcd() { cd "$(command fcd "$@")" || return; }
+# fcd() { cd "$(npm exec fcd "$@")" || return; }
 ```
 
 ### Options

@@ -32,7 +32,7 @@ function fuzzyScore(pattern, text) {
 
 function interactiveSelect(candidates) {
   return new Promise((resolve, reject) => {
-    if (!process.stdin.isTTY || !process.stdout.isTTY) {
+    if (!process.stdin.isTTY || !process.stderr.isTTY) {
       resolve(candidates[0].dir);
       return;
     }
@@ -82,9 +82,9 @@ function interactiveSelect(candidates) {
 
     function onData(chunk) {
       const str = chunk.toString();
-      if (str === "\u0003" || str === "q") {
+      if (str === "\u0003" || str === "\u001b" || str === "q") {
         cleanup();
-        reject(new Error("Selection cancelled."));
+        resolve(null);
         return;
       }
 
@@ -266,6 +266,10 @@ findProc.on("close", (code) => {
 
   interactiveSelect(candidates)
     .then((dir) => {
+      if (!dir) {
+        process.exit(130);
+        return;
+      }
       console.log(dir);
     })
     .catch((err) => {
