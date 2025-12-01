@@ -29,10 +29,11 @@ fcd() { cd "$(pnpm exec fcd "$@")" || return; }
 ```
 
 ### If you use npm
+
 ```
 # after global install, you can use the binary directly:
 # fcd() { cd "$(npm exec fcd "$@")" || return; }
-
+```
 If you prefer not to install globally, you can run it via pnpm without installing:
 
 ```
@@ -66,3 +67,4 @@ To jump into the result, add a shell helper:
 ### Requirements
 
 - Relies on the system `find` command.
+

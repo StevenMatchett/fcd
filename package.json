@@ -1,12 +1,14 @@
 {
   "name": "@matchett/fcd",
   "private": false,
-  "version": "1.0.2",
+  "version": "1.0.5",
+  "repository": "https://github.com/StevenMatchett/fcd",
   "description": "Directory chooser that matches folder names without fzf so you can cd faster.",
   "bin": {
     "fcd": "bin/fcd.js"
   },
   "files": [
+    "README.md",
     "bin"
   ],
   "scripts": {
