@@ -1,70 +1,56 @@
 # fcd
 
-Lightweight directory picker that matches folder names (no `fzf` needed).
+Lightweight directory picker that fuzzy-matches folder names (no `fzf` needed).
 
 ## Install
 
-Install directly from npm (public package):
-
+### From npm (published package)
 ```
 pnpm install -g @matchett/fcd
-# or
 npm install -g @matchett/fcd
 ```
 
-From the repo root, install the binary onto your `PATH`:
-
+### From this repo
 ```
 pnpm install -g .
-# or
 npm install -g .
 ```
 
-## Add to your shell
-Add to your .zshrc or equivalent:
+## Shell integration
 
-### If you use pnpm
+Add one of these to your shell rc (zsh/bash):
 ```
+# using npm
+fcd() { cd "$(npm exec fcd "$@")" || return; }
+
+# using pnpm
 fcd() { cd "$(pnpm exec fcd "$@")" || return; }
-```
-
-### If you use npm
-
-```
-# after global install, you can use the binary directly:
-# fcd() { cd "$(npm exec fcd "$@")" || return; }
-```
-If you prefer not to install globally, you can run it via pnpm without installing:
-
-```
-pnpm exec fcd <pattern> [searchRoot]
 ```
 
 ## Usage
 
 ```
+fcd <pattern> [searchRoot]
+fcd api ..   # example: search for "api" under ../
+```
+
+If you don’t install globally, run via pnpm:
+```
 pnpm exec fcd <pattern> [searchRoot]
-pnpm exec fcd api ..   # example: search for "api" under ../
 ```
 
-Behavior:
-- Fuzzy-matches against directory names only (not the full path), case-insensitive.
+## Behavior
+
+- Fuzzy-matches directory names only (case-insensitive, not full paths).
 - Default search depth is 1 (only direct subdirectories); raise `FCD_MAX_DEPTH` to recurse.
-- When multiple results are found, shows the top matches and lets you pick with arrow keys or j/k (g/G to jump) + Enter (default is the top match). Esc/q cancels.
-- Prints the selected match as an absolute path.
-- Prompts are written to stderr so command substitution like `dir="$(fcd foo)"` stays interactive.
+- Interactive picker: arrow keys or j/k (g/G to jump), Enter to select, Esc/q to cancel.
+- Prints the selected absolute path. Prompts go to stderr so wrappers like `dir="$(fcd foo)"` stay interactive.
 
-To jump into the result, add a shell helper:
-
-
-```
-
-### Options
+## Options
 
 - `FCD_MAX_DEPTH`: limit how deep `find` traverses (default: 1).
 - `-h` / `--help`: show usage.
 
-### Requirements
+## Requirements
 
 - Relies on the system `find` command.
-
