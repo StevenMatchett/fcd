@@ -4,6 +4,14 @@ Lightweight directory picker that matches folder names (no `fzf` needed).
 
 ## Install
 
+Install directly from npm (public package):
+
+```
+pnpm install -g @matchett/fcd
+# or
+npm install -g @matchett/fcd
+```
+
 From the repo root, install the binary onto your `PATH`:
 
 ```
@@ -11,6 +19,7 @@ pnpm install -g .
 # or
 npm install -g .
 ```
+
 
 If you prefer not to install globally, you can run it via pnpm without installing:
 
