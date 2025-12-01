@@ -1,5 +1,5 @@
 {
-  "name": "fcd",
+  "name": "@matchesett/fcd",
   "version": "0.1.0",
   "description": "Directory chooser that matches folder names without fzf so you can cd faster.",
   "bin": {
