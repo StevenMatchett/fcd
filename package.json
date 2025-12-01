@@ -1,0 +1,16 @@
+{
+  "name": "fcd",
+  "version": "0.1.0",
+  "description": "Directory chooser that matches folder names without fzf so you can cd faster.",
+  "bin": {
+    "fcd": "bin/fcd.js"
+  },
+  "scripts": {
+    "start": "node bin/fcd.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "packageManager": "pnpm@10.16.0"
+}
