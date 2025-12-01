@@ -21,10 +21,23 @@ npm install -g .
 Add one of these to your shell rc (zsh/bash):
 ```
 # using npm
-fcd() { cd "$(npm exec fcd "$@")" || return; }
-
+fcd() {
+    dir="$(npm exec fcd "$@")"  || return
+    [ -n "$dir" ] || {
+            echo "No selection"
+            return 1
+    }
+    cd "$dir"
+}
 # using pnpm
-fcd() { cd "$(pnpm exec fcd "$@")" || return; }
+fcd() {
+    dir="$(pnpm exec fcd "$@")"  || return
+    [ -n "$dir" ] || {
+            echo "No selection"
+            return 1
+    }
+    cd "$dir"
+}
 ```
 
 ## Usage
